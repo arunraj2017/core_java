@@ -3,7 +3,6 @@ package me.learning;
 import java.io.IOException;
 import java.util.Scanner;
 
-//Sudoku Solver
 
 public class SudokuSolver {
 
