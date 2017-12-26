@@ -11,13 +11,19 @@ public class SudokuSolver {
 		int output = 0;
 		int ip1_rows = 0;
 		int ip1_columns = 0;
-		// ip1_rows = Integer.parseInt(in.nextLine().trim());
-		// ip1_columns = Integer.parseInt(in.nextLine().trim());
-		// int[][] ip1 = new int[ip1_rows][ip1_columns];
+		 ip1_rows = Integer.parseInt(in.nextLine().trim());
+		 ip1_columns = Integer.parseInt(in.nextLine().trim());
+		 int[][] ip1 = new int[ip1_rows][ip1_columns];
+		
+		  for (int ip1_i = 0; ip1_i < ip1_rows; ip1_i++) {
+			  for (int ip1_j = 0; ip1_j < ip1_columns; ip1_j++) 
+			    { 
+				  ip1[ip1_i][ip1_j] = in.nextInt(); 
+			    } 
+		  }
+		 
 		/*
-		 * for (int ip1_i = 0; ip1_i < ip1_rows; ip1_i++) { for (int ip1_j = 0;
-		 * ip1_j < ip1_columns; ip1_j++) { ip1[ip1_i][ip1_j] = in.nextInt(); } }
-		 */
+		Testing data
 		int[][] ip1 = { 
 						{ 2, 0, 1, 0 }, 
 						{ 0, 3, 0, 0 }, 
@@ -26,6 +32,7 @@ public class SudokuSolver {
 
 		int[][] ip = { { 0, 0, 0, 0 }, { 0, 0, 0, 0 }, { 0, 0, 0, 0 },
 				{ 0, 0, 0, 0 } };
+			*/
 
 		/*
 		 * { [1,3,4,2] [2,4,3,1] [3,1,2,4] [4,2,1,3]
@@ -34,9 +41,10 @@ public class SudokuSolver {
 		 */
 
 		output = SolveMagicSquare(ip1);
-		// System.out.println(String.valueOf(output));
+		System.out.println(String.valueOf(output));
 	}
 
+	/* Starting point of the alogrithm */
 	private static int SolveMagicSquare(int[][] ip1) {
 
 		int[][] finalArr = solve(0, 0, ip1);
@@ -50,6 +58,7 @@ public class SudokuSolver {
 		return 0;
 	}
 
+	/* Solve using recursion - Back tracking algorithm */
 	private static int[][] solve(int row, int col, int[][] ip1) {
 
 		System.out.println("(" + row + " , " + col + ")");
@@ -109,6 +118,7 @@ public class SudokuSolver {
 		return retval;
 	}
 
+	/* Check presence in row modular function */ 
 	private static boolean checkRows(int val, int x, int y, int[][] arr) {
 		boolean retVal = false;
 		for (int i = 0; i < arr.length; i++) {
@@ -121,6 +131,7 @@ public class SudokuSolver {
 		return retVal;
 	}
 
+	/* Check presence in column modular function */ 
 	private static boolean checkColumn(int val, int x, int y, int[][] arr) {
 
 		boolean retVal = false;
@@ -134,6 +145,7 @@ public class SudokuSolver {
 		return retVal;
 	}
 
+	/* Checks whether the number is present in the smaller square*/
 	private static boolean checkSquare(int val, int x, int y, int[][] arr) {
 		int rx = (int) Math.sqrt(arr.length);
 
@@ -165,6 +177,7 @@ public class SudokuSolver {
 		return isPresent;
 	}
 
+	/*Check the number ius available in the present column or row */
 	private static boolean checkPresense(int val, int x, int y, int[][] arr) {
 		boolean ispresent = true;
 		
